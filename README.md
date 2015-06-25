@@ -1,4 +1,4 @@
-# EncryptionDecryptionExample
+# EncryptionDecryptionDemo
 Sample Demo App to encrypt &amp; decrypt the data.
 
 The server side implementation as shown in screenshot below is need to be done on server side (using encryption algorithm in AESHelper class) . The server side code is not present in demo, it's just a hint to view how client side decrypts encrypted data received from server.
