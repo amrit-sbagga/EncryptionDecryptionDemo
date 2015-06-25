@@ -15,33 +15,34 @@ public class AESHelper {
     /**
      * Encrypts the text
      *
-     * @param seed
-     * @param clearText The text you want to encrypt
+     * @param seed          The secret/seed key
+     * @param textToEncrypt The text you want to encrypt
      * @return Encrypted data if successful, or null if unsuccessful
      */
-    public static String encrypt(String seed, String clearText) {
-        byte[] encryptedText = null;
+    public static String encrypt(String seed, String textToEncrypt) {
+        byte[] encryptedText;
         try {
             byte[] keyData = seed.getBytes();
             SecretKey ks = new SecretKeySpec(keyData, "AES");
             Cipher c = Cipher.getInstance("AES");
             c.init(Cipher.ENCRYPT_MODE, ks);
-            encryptedText = c.doFinal(clearText.getBytes("UTF-8"));
+            encryptedText = c.doFinal(textToEncrypt.getBytes("UTF-8"));
             return Base64.encodeToString(encryptedText, Base64.DEFAULT);
         } catch (Exception e) {
             e.printStackTrace();
-            return null;
         }
+        return null;
     }
 
     /**
      * Decrypts the text
      *
+     * @param seed          The secret/seed key
      * @param encryptedText The text you want to encrypt
      * @return Decrypted data if successful, or null if unsucessful
      */
     public static String decrypt(String seed, String encryptedText) {
-        byte[] clearText = null;
+        byte[] clearText;
         try {
             byte[] keyData = seed.getBytes();
             SecretKey ks = new SecretKeySpec(keyData, "AES");
@@ -51,8 +52,8 @@ public class AESHelper {
             return new String(clearText, "UTF-8");
         } catch (Exception e) {
             e.printStackTrace();
-            return null;
         }
+        return null;
     }
 
    /* public static String encrypt(String seed, String cleartext)
